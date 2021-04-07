@@ -5,33 +5,90 @@ const Choice = require('inquirer/lib/objects/choice');
 
 inquirer
   .prompt([
+
     {
       type: 'input',
       name: 'managerName',
       message: 'Managers Name:',
     },
+
     {
       type: 'input',
       name: 'managerID',
       message: 'Managers Employee ID:',
     },
+
     {
       type: 'input',
       name: 'managerEmail',
       message: 'Managers Work Email:',
     },
+
     {
       type: 'input',
       name: 'managerOffice',
       message: 'Managers Office Number:',
     },
 
+    {
+      type: 'list',
+      name: 'teamSelector',
+      message: 'Manager Name:',
+      choices: ['Engineer', 'Intern', 'Finish Team']
+    },
+
   ])
   .then((data) => {
 
-    const {  managerName, managerID, managerEmail, managerOffice } = data;
-    
+    const {  managerName, managerID, managerEmail, managerOffice, teamSelector } = data;
+    console.log(teamSelector);
 
+
+    const createEngineer = () => {
+        inquirer
+         .prompt([
+           {
+             type: 'input',
+             name: 'managerName',
+             message: 'Managers Name:',
+           },
+           {
+             type: 'input',
+             name: 'managerID',
+             message: 'Managers Employee ID:',
+           },
+           {
+            type: 'list',
+            name: 'teamSelector',
+            message: 'Manager Name:',
+            choices: ['Engineer', 'Intern', 'Finish Team']
+          },
+         ])
+    }
+
+    const createIntern = () => {
+      inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'managerName',
+          message: 'Managers Name:',
+        },
+        {
+          type: 'input',
+          name: 'managerID',
+          message: 'Managers Employee ID:',
+        },
+      ])
+    }
+    
+    if (teamSelector == 'Engineer') {
+      createEngineer();
+    } 
+
+    if (teamSelector == 'Intern') {
+      createIntern();
+    }
 
     const HTML = 
     `
@@ -77,22 +134,13 @@ inquirer
         </body>
     </html>
     `
+    
+    if (teamSelector == 'Finish Team'){
 
      fs.writeFile('index.html', HTML, (err) =>
        err ? console.log(err) : console.log('Website Created!')
      );
+    }
   });
 
-  // work on a append file to dynamically create this website
-
-  inquirer
-    .prompt([
-        {
-        type: 'checkbox',
-        name: 'teamSelector',
-        message: 'Manager Name:',
-        choices: ['Engineer', 'Intern', 'Finish Team']
-        },
-
-        
-    ])
+// 
