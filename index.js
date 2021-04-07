@@ -40,9 +40,9 @@ inquirer
   ])
   .then((data) => {
 
-    const {  managerName, managerID, managerEmail, managerOffice, teamSelector } = data;
+    const {  managerName, managerID, managerEmail, managerOffice } = data;
     console.log(teamSelector);
-
+    let { teamSelector } = data;
 
     const createEngineer = () => {
         inquirer
@@ -64,6 +64,7 @@ inquirer
             choices: ['Engineer', 'Intern', 'Finish Team']
           },
          ])
+         return teamSelector;
     }
 
     const createIntern = () => {
@@ -78,6 +79,12 @@ inquirer
           type: 'input',
           name: 'managerID',
           message: 'Managers Employee ID:',
+        },
+        {
+          type: 'list',
+          name: 'teamSelector',
+          message: 'Manager Name:',
+          choices: ['Engineer', 'Intern', 'Finish Team']
         },
       ])
     }
