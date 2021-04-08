@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 
 const fs = require('fs');
 const Choice = require('inquirer/lib/objects/choice');
+//const { write } = require('node:fs');
 
 inquirer
   .prompt([
@@ -33,7 +34,7 @@ inquirer
     {
       type: 'list',
       name: 'teamSelector',
-      message: 'Manager Name:',
+      message: 'Next Team Member:',
       choices: ['Engineer', 'Intern', 'Finish Team']
     },
 
@@ -41,30 +42,54 @@ inquirer
   .then((data) => {
 
     const {  managerName, managerID, managerEmail, managerOffice } = data;
-    console.log(teamSelector);
-    let { teamSelector } = data;
+    const { teamSelector } = data;
 
     const createEngineer = () => {
         inquirer
          .prompt([
            {
              type: 'input',
-             name: 'managerName',
-             message: 'Managers Name:',
+             name: 'engineerName',
+             message: 'Engineer Name:',
            },
            {
              type: 'input',
-             name: 'managerID',
-             message: 'Managers Employee ID:',
+             name: 'engineerID',
+             message: 'Engineer Employee ID:',
            },
+           {
+            type: 'input',
+            name: 'engineerEmail',
+            message: 'Engineers Email:',
+          },
+          {
+            type: 'input',
+            name: 'engineerGithub',
+            message: 'Engineer GitHub Username:'
+          },
            {
             type: 'list',
             name: 'teamSelector',
-            message: 'Manager Name:',
+            message: 'Next Team Member:',
             choices: ['Engineer', 'Intern', 'Finish Team']
           },
          ])
-         return teamSelector;
+         .then((data) => {
+          const { teamSelector } = data;
+           
+          if(teamSelector == 'Engineer') {
+            createEngineer(); 
+          }
+          
+          if(teamSelector == 'Intern') {
+            createIntern();
+          }
+      
+          if (teamSelector == 'Finish Team') {
+            writeFile();
+          }
+
+         });
     }
 
     const createIntern = () => {
@@ -72,21 +97,47 @@ inquirer
       .prompt([
         {
           type: 'input',
-          name: 'managerName',
-          message: 'Managers Name:',
+          name: 'internName',
+          message: 'Interns Name:',
         },
         {
           type: 'input',
-          name: 'managerID',
-          message: 'Managers Employee ID:',
+          name: 'internID',
+          message: 'Interns Employee ID:',
+        },
+        {
+          type: 'input',
+          name: 'internEmail',
+          message: 'Interns Email:',
+        },
+        {
+          type: 'input',
+          name: 'internSchool',
+          message: 'Interns School:',
         },
         {
           type: 'list',
           name: 'teamSelector',
-          message: 'Manager Name:',
+          message: 'Next Team Member:',
           choices: ['Engineer', 'Intern', 'Finish Team']
         },
       ])
+      .then((data) => {
+        const { teamSelector } = data;
+         
+        if(teamSelector == 'Engineer') {
+          createEngineer(); 
+        }
+        
+        if(teamSelector == 'Intern') {
+          createIntern();
+        }
+    
+        if (teamSelector == 'Finish Team') {
+          writeFile();
+        }
+
+       });
     }
     
     if (teamSelector == 'Engineer') {
@@ -95,6 +146,10 @@ inquirer
 
     if (teamSelector == 'Intern') {
       createIntern();
+    }
+
+    if (teamSelector == 'Finish Team') {
+      writeFile();
     }
 
     const HTML = 
@@ -141,10 +196,8 @@ inquirer
         </body>
     </html>
     `
-    
-    if (teamSelector == 'Finish Team'){
-
-     fs.writeFile('index.html', HTML, (err) =>
+    const writeFile = () => {
+      fs.writeFile('index.html', HTML, (err) =>
        err ? console.log(err) : console.log('Website Created!')
      );
     }
