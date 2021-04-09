@@ -44,114 +44,6 @@ inquirer
     const {  managerName, managerID, managerEmail, managerOffice } = data;
     const { teamSelector } = data;
 
-    const createEngineer = () => {
-        inquirer
-         .prompt([
-           {
-             type: 'input',
-             name: 'engineerName',
-             message: 'Engineer Name:',
-           },
-           {
-             type: 'input',
-             name: 'engineerID',
-             message: 'Engineer Employee ID:',
-           },
-           {
-            type: 'input',
-            name: 'engineerEmail',
-            message: 'Engineers Email:',
-          },
-          {
-            type: 'input',
-            name: 'engineerGithub',
-            message: 'Engineer GitHub Username:'
-          },
-           {
-            type: 'list',
-            name: 'teamSelector',
-            message: 'Next Team Member:',
-            choices: ['Engineer', 'Intern', 'Finish Team']
-          },
-         ])
-         .then((data) => {
-          const { teamSelector } = data;
-           
-          if(teamSelector == 'Engineer') {
-            createEngineer(); 
-          }
-          
-          if(teamSelector == 'Intern') {
-            createIntern();
-          }
-      
-          if (teamSelector == 'Finish Team') {
-            writeFile();
-          }
-
-         });
-    }
-
-    const createIntern = () => {
-      inquirer
-      .prompt([
-        {
-          type: 'input',
-          name: 'internName',
-          message: 'Interns Name:',
-        },
-        {
-          type: 'input',
-          name: 'internID',
-          message: 'Interns Employee ID:',
-        },
-        {
-          type: 'input',
-          name: 'internEmail',
-          message: 'Interns Email:',
-        },
-        {
-          type: 'input',
-          name: 'internSchool',
-          message: 'Interns School:',
-        },
-        {
-          type: 'list',
-          name: 'teamSelector',
-          message: 'Next Team Member:',
-          choices: ['Engineer', 'Intern', 'Finish Team']
-        },
-      ])
-      .then((data) => {
-        const { teamSelector } = data;
-         
-        if(teamSelector == 'Engineer') {
-          createEngineer(); 
-        }
-        
-        if(teamSelector == 'Intern') {
-          createIntern();
-        }
-    
-        if (teamSelector == 'Finish Team') {
-          writeFile();
-        }
-
-       });
-    }
-    
-    if (teamSelector == 'Engineer') {
-      createEngineer();
-    } 
-
-    if (teamSelector == 'Intern') {
-      createIntern();
-    }
-
-    if (teamSelector == 'Finish Team') {
-      writeFile();
-    }
-
     const HTML = 
     `
     <!DOCTYPE html>
@@ -192,15 +84,168 @@ inquirer
                         <p class="moreinfo"></p>
                         <p class="moreinfo"></p>
                 </div>
-            </main>
-        </body>
-    </html>
     `
+
     const writeFile = () => {
       fs.writeFile('index.html', HTML, (err) =>
        err ? console.log(err) : console.log('Website Created!')
      );
     }
+    writeFile();
+
+    endHTML = `
+        </main>
+      </body>
+    </html>
+    `
+
+    finishFile = () => {
+      fs.appendFile('index.html', endHTML, (err) =>
+            err ? console.error(err) : console.log('HTML Finished!')
+      );
+    };
+
+    const createEngineer = () => {
+        inquirer
+         .prompt([
+           {
+             type: 'input',
+             name: 'engineerName',
+             message: 'Engineer Name:',
+           },
+           {
+             type: 'input',
+             name: 'engineerID',
+             message: 'Engineer Employee ID:',
+           },
+           {
+            type: 'input',
+            name: 'engineerEmail',
+            message: 'Engineers Email:',
+          },
+          {
+            type: 'input',
+            name: 'engineerGithub',
+            message: 'Engineer GitHub Username:'
+          },
+           {
+            type: 'list',
+            name: 'teamSelector',
+            message: 'Next Team Member:',
+            choices: ['Engineer', 'Intern', 'Finish Team']
+          },
+         ])
+         .then((data) => {
+          const { teamSelector } = data;
+          const { engineerName, engineerID, engineerEmail, engineerGithub } = data;
+
+          engineerHTML = `
+            <div class"engineer">
+              <h2 class"name">${ engineerName }</h2>
+                  <p class="role">Engineer</p>
+                  <p class="moreinfo">${ engineerID }</p>
+                  <p class="moreinfo">${ engineerEmail }</p>
+                  <p class="moreinfo">${ engineerGithub }</p>
+            </div>  
+          `
+          
+          fs.appendFile('index.html', engineerHTML, (err) =>
+            err ? console.error(err) : console.log('Engineer Added!')
+          );
+
+          if(teamSelector == 'Engineer') {
+            createEngineer(); 
+          }
+          
+          if(teamSelector == 'Intern') {
+            createIntern();
+          }
+      
+          if (teamSelector == 'Finish Team') {
+            finishFile();
+          }
+
+         });
+    }
+
+    const createIntern = () => {
+      inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'internName',
+          message: 'Interns Name:',
+        },
+        {
+          type: 'input',
+          name: 'internID',
+          message: 'Interns Employee ID:',
+        },
+        {
+          type: 'input',
+          name: 'internEmail',
+          message: 'Interns Email:',
+        },
+        {
+          type: 'input',
+          name: 'internSchool',
+          message: 'Interns School:',
+        },
+        {
+          type: 'list',
+          name: 'teamSelector',
+          message: 'Next Team Member:',
+          choices: ['Engineer', 'Intern', 'Finish Team']
+        },
+      ])
+      .then((data) => {
+        const { teamSelector } = data;
+        const {internName, internID, internEmail, internSchool } = data;
+         
+        internHTML = `
+            <div class"engineer">
+              <h2 class"name">${ internName }</h2>
+                  <p class="role">Intern</p>
+                  <p class="moreinfo">${ internID }</p>
+                  <p class="moreinfo">${ internEmail }</p>
+                  <p class="moreinfo">${ internSchool }</p>
+            </div>  
+          `
+          
+          fs.appendFile('index.html', internHTML, (err) =>
+            err ? console.error(err) : console.log('Engineer Added!')
+          );
+
+
+        if(teamSelector == 'Engineer') {
+          createEngineer(); 
+        }
+        
+        if(teamSelector == 'Intern') {
+          createIntern();
+        }
+    
+        if (teamSelector == 'Finish Team') {
+          finishFile();
+        }
+
+       });
+    }
+    
+    if (teamSelector == 'Engineer') {
+      createEngineer();
+    } 
+
+    if (teamSelector == 'Intern') {
+      createIntern();
+    }
+
+    if (teamSelector == 'Finish Team') {
+      writeFile();
+    }
+
+    
+    
   });
 
 // 
