@@ -11,9 +11,8 @@ This is a simple website generator that creates a project teams profile based on
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [Contributing](#contributing)
+- [Badges](#badges)
 - [Tests](#tests)
-- [Questions](#questions)
 
 ## Installation
 
@@ -30,8 +29,6 @@ Install the node modules with `npm install` in your terminal
 ## Badges
 
 <img src='https://img.shields.io/github/repo-size/sosoberg/team_profile_generator?style=for-the-badge'>
-
-
 
 ## Tests
 
