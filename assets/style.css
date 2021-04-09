@@ -4,3 +4,41 @@ header {
     text-align: center;
     padding: 40px;
 }
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.employee {
+    background-color: orchid;
+    margin: 30px;
+    padding: 20px;
+}
+
+.name {
+    font-size: 40px;
+    padding-bottom: 10px;
+}
+
+.role {
+    font-size: 30px;
+    padding-bottom: 8px;
+}
+
+.moreinfo {
+    font-size: 20px;
+    padding-bottom: 7px;
+}
+
+@media only screen and (max-width: 1230px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    main {
+        grid-template-columns:1fr;
+    }
+}

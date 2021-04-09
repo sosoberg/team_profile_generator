@@ -52,7 +52,7 @@ inquirer
         <head>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <title></title>
+            <title>My Team</title>
             <meta name="description" content="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="./assets/reset.css">
@@ -63,26 +63,12 @@ inquirer
                 <h1>My Team</h1>
             </header>
             <main>
-                <div>
-                    <h2 class"name">${ managerName }</h2>
+                <div class="employee">
+                    <h2 class="name">${ managerName }</h2>
                         <p class="role">Manager</p>
-                        <p class="moreinfo">${ managerID }</p>
-                        <p class="moreinfo">${ managerEmail }</p>
-                        <p class="moreinfo">${ managerOffice }</p>
-                </div>
-                <div class"engineer">
-                    <h2 class"name"></h2>
-                        <p class="role"></p>
-                        <p class="moreinfo"></p>
-                        <p class="moreinfo"></p>
-                        <p class="moreinfo"></p>
-                </div>
-                <div class"intern">
-                    <h2 class"name"></h2>
-                        <p class="role"></p>
-                        <p class="moreinfo"></p>
-                        <p class="moreinfo"></p>
-                        <p class="moreinfo"></p>
+                        <p class="moreinfo">ID: ${ managerID }</p>
+                        <p class="moreinfo">Email: <a href="mailto:${ managerEmail }">${ managerEmail }</a></p>
+                        <p class="moreinfo">Office #: ${ managerOffice }</p>
                 </div>
     `
 
@@ -140,24 +126,24 @@ inquirer
           const { engineerName, engineerID, engineerEmail, engineerGithub } = data;
 
           engineerHTML = `
-            <div class"engineer">
-              <h2 class"name">${ engineerName }</h2>
-                  <p class="role">Engineer</p>
-                  <p class="moreinfo">${ engineerID }</p>
-                  <p class="moreinfo">${ engineerEmail }</p>
-                  <p class="moreinfo">${ engineerGithub }</p>
-            </div>  
+              <div class="employee">
+                <h2 class="name">${ engineerName }</h2>
+                    <p class="role">Engineer</p>
+                    <p class="moreinfo">ID: ${ engineerID }</p>
+                    <p class="moreinfo">Email: <a href="mailto:${ engineerEmail }">${ engineerEmail }</a></p>
+                    <p class="moreinfo">Github: <a href="https://github.com/${ engineerGithub }">${ engineerGithub }</a></p>
+              </div>  
           `
           
           fs.appendFile('index.html', engineerHTML, (err) =>
             err ? console.error(err) : console.log('Engineer Added!')
           );
 
-          if(teamSelector == 'Engineer') {
+          if (teamSelector == 'Engineer') {
             createEngineer(); 
           }
           
-          if(teamSelector == 'Intern') {
+          if (teamSelector == 'Intern') {
             createIntern();
           }
       
@@ -203,17 +189,17 @@ inquirer
         const {internName, internID, internEmail, internSchool } = data;
          
         internHTML = `
-            <div class"engineer">
-              <h2 class"name">${ internName }</h2>
-                  <p class="role">Intern</p>
-                  <p class="moreinfo">${ internID }</p>
-                  <p class="moreinfo">${ internEmail }</p>
-                  <p class="moreinfo">${ internSchool }</p>
-            </div>  
+              <div class="employee">
+                <h2 class="name">${ internName }</h2>
+                    <p class="role">Intern</p>
+                    <p class="moreinfo">ID: ${ internID }</p>
+                    <p class="moreinfo">Email: <a href="mailto:${ internEmail }">${ internEmail }</a></p>
+                    <p class="moreinfo">School: ${ internSchool }</p>
+              </div>  
           `
           
           fs.appendFile('index.html', internHTML, (err) =>
-            err ? console.error(err) : console.log('Engineer Added!')
+            err ? console.error(err) : console.log('Intern Added!')
           );
 
 
@@ -241,11 +227,9 @@ inquirer
     }
 
     if (teamSelector == 'Finish Team') {
-      writeFile();
+      endHTML();
     }
-
-    
     
   });
 
-// 
+
