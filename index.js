@@ -148,7 +148,7 @@ inquirer
           }
       
           if (teamSelector == 'Finish Team') {
-            finishFile();
+            setTimeout(finishFile, 200);
           }
 
          });
@@ -212,7 +212,7 @@ inquirer
         }
     
         if (teamSelector == 'Finish Team') {
-          finishFile();
+          setTimeout(finishFile, 200);
         }
 
        });
@@ -227,7 +227,7 @@ inquirer
     }
 
     if (teamSelector == 'Finish Team') {
-      endHTML();
+      setTimeout(finishFile, 200);
     }
     
   });
