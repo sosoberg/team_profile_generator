@@ -140,11 +140,11 @@ inquirer
           );
 
           if (teamSelector == 'Engineer') {
-            createEngineer(); 
+            setTimeout(createEngineer, 200);
           }
           
           if (teamSelector == 'Intern') {
-            createIntern();
+            setTimeout(createIntern, 200);
           }
       
           if (teamSelector == 'Finish Team') {
@@ -204,11 +204,11 @@ inquirer
 
 
         if(teamSelector == 'Engineer') {
-          createEngineer(); 
+          setTimeout(createEngineer, 200); 
         }
         
         if(teamSelector == 'Intern') {
-          createIntern();
+          setTimeout(createIntern, 200);
         }
     
         if (teamSelector == 'Finish Team') {
@@ -219,11 +219,11 @@ inquirer
     }
     
     if (teamSelector == 'Engineer') {
-      createEngineer();
+      setTimeout(createEngineer, 200); 
     } 
 
     if (teamSelector == 'Intern') {
-      createIntern();
+      setTimeout(createIntern, 200);
     }
 
     if (teamSelector == 'Finish Team') {
