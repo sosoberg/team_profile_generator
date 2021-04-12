@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 
 const fs = require('fs');
 const Choice = require('inquirer/lib/objects/choice');
-//const { write } = require('node:fs');
+
 
 inquirer
   .prompt([
@@ -85,7 +85,7 @@ inquirer
     </html>
     `
 
-    finishFile = () => {
+    const finishFile = () => {
       fs.appendFile('index.html', endHTML, (err) =>
             err ? console.error(err) : console.log('HTML Finished!')
       );
@@ -231,5 +231,8 @@ inquirer
     }
     
   });
+
+
+
 
 

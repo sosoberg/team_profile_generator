@@ -20,7 +20,8 @@ Install the node modules with `npm install` in your terminal
 
 ## Usage
 
-<!-- Link to future tutorial video here -->
+Check out my video Tutorial here:
+(https://drive.google.com/file/d/1m78rGiysl-2E26SqbycqrAv3vhyIJMjA/view)
 
 ## License
 
